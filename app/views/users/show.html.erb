@@ -1,0 +1,10 @@
+<h1><%= @user.name %></h1>
+<aside class="user-info">
+  <ul>
+    <span>Email:</span>
+    <span><%= @user.email %></span>
+  </ul>
+</aside>
+<% if signed_in? %>
+<%= link_to("signout #{current_user.name}", signout_path, method: :delete) %>
+<% end %>
