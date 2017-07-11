@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+
+ 
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+#footer {
+  border-top: 1px solid $gray-lighter;
+  margin-top: 50px;
+  padding: 10px;
+}
+
+.field_with_errors {
+    @extend .has-error;
+}
