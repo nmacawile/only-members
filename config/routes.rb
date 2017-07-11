@@ -3,5 +3,7 @@ Rails.application.routes.draw do
   get "/signin" => "sessions#new"
   post "/signin" => "sessions#create"
   delete "/signout" => "sessions#destroy"
-  resources :users
+  resources :users, except: [:new, :create]
+  get "/signup" => "users#new"
+  post "/signup" => "users#create"
 end

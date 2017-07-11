@@ -13,11 +13,13 @@ class UserSigninTest < ActionDispatch::IntegrationTest
     assert_redirected_to @user
     delete signout_path
     assert_not user_signed_in?
+    assert_not flash.empty?
     assert_redirected_to root_path
   end
   
   test "should reject invalid signin details" do
     post signin_path, params: { session: { email: @user.email, password: "" } }
     assert_not user_signed_in?
+    assert_not flash.empty?
   end
 end

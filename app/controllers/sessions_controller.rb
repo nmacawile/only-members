@@ -8,12 +8,14 @@ class SessionsController < ApplicationController
       sign_in(user)
       redirect_to user
     else
-      redirect_to signin_path
+      flash.now[:danger] = "Invalid login details"
+      render :new
     end
   end
   
   def destroy
     sign_out if signed_in?
+    flash[:info] = "You have been logged out."
     redirect_to root_path
   end
 end
