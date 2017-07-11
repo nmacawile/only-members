@@ -1,2 +1,18 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <%= render 'shared/error_messages' %>
+    <h2>Sign Up</h1>
+    <%= form_for @user, url: signup_path do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+      <%= f.label :email %>
+      <%= f.email_field :email, class: "form-control", placeholder: "Email Address" %>
+      <%= f.label :password %>
+      <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Confirm password" %>
+      <br>
+      <%= f.submit "Sign up", class: "btn btn-lg btn-primary btn-block" %>
+    <% end %>
+  </div>
+</div>

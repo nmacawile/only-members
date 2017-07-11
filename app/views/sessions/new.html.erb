@@ -1,8 +1,13 @@
-<h1>Signin</h1>
-<%= form_for :session, url: signin_path do |f| %>
-  <%= f.label :email %>
-  <%= f.text_field :email %>
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-  <%= f.submit "Sign in" %>
-<% end %>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+  <h2>Sign In</h1>
+  <%= form_for :session, url: signin_path do |f| %>
+    <%= f.label :email %>
+    <%= f.email_field :email, class: "form-control", placeholder: "Email Address" %>
+    <%= f.label :password %>
+    <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+    <br>
+    <%= f.submit "Sign in", class: "btn btn-lg btn-primary btn-block" %>
+  <% end %>
+  </div>
+</div>
