@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_action :signed_in, only: [:edit, :update]
+  before_action :correct_user, only: [:edit, :update]
+  
   def index
   end
   
@@ -11,6 +14,7 @@ class UsersController < ApplicationController
   end
   
   def edit
+    @user = User.find(params[:id])
   end
   
   def create
@@ -25,10 +29,26 @@ class UsersController < ApplicationController
   end
   
   def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      flash[:success] = "Edit success"
+      redirect_to @user
+    else
+      render :edit
+    end
   end
  
   private
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    end
+    
+    def correct_user
+      user = User.find(params[:id])
+      redirect_to root_path unless current_user?(user)
+    end
+    
+    def signed_in
+      redirect_to signin_path unless signed_in?
     end
 end

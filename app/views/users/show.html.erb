@@ -1,10 +1,30 @@
-<h1><%= @user.name %></h1>
-<aside class="user-info">
-  <ul>
-    <span>Email:</span>
-    <span><%= @user.email %></span>
-  </ul>
-</aside>
-<% if signed_in? %>
-<%= link_to("signout #{current_user.name}", signout_path, method: :delete) %>
-<% end %>
+<div class="row">
+  <aside class="col-md-3">
+    <ul>
+      <h2><%= @user.name %></h2>
+      <% if signed_in? %>
+        <ul>
+          <li><%= link_to("Settings", edit_user_path(current_user)) %></li>
+          <li><%= link_to("Sign out", signout_path, method: :delete) %></li
+        </ul>
+      <% end %>
+    </ul>
+  </aside>
+  <div class="col-md-6">
+    <div class="post-block">
+      <strong><a>User Name</a></strong> <span class="timestamp">2 days ago</span>
+      <p>POST GOES HERE</p>
+      <a href="#">delete</a>
+    </div>
+    <div class="post-block">
+      <strong><a>User Name</a></strong> <span class="timestamp">2 days ago</span>
+      <p>POST GOES HERE</p>
+      <a href="#">delete</a>
+    </div>
+    <div class="post-block">
+      <strong><a>User Name</a></strong> <span class="timestamp">2 days ago</span>
+      <p>POST GOES HERE</p>
+      <a href="#">delete</a>
+    </div>
+  </div>
+</div>
