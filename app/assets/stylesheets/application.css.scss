@@ -36,3 +36,15 @@
     color: gray;
   }
 }
+
+.user-links {
+  list-style: none;
+  li {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    &:hover {
+      background-color: $gray-lighter;
+    }
+  }
+}
