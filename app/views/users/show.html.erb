@@ -2,7 +2,7 @@
   <aside class="col-md-3">
     <ul>
       <h2><%= @user.name %></h2>
-      <% if signed_in? %>
+      <% if signed_in? && current_user?(@user) %>
         <ul>
           <li><%= link_to("Settings", edit_user_path(current_user)) %></li>
           <li><%= link_to("Sign out", signout_path, method: :delete) %></li
