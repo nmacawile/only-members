@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  content: Post1
+  created_at: <%= 10.minute.ago %>
+
+two:
+  user: one
+  content: Post2
+  created_at: <%= 9.minutes.ago %>
+  
+three:
+  user: one
+  content: Post3
+  created_at: <%= 4.minutes.ago %>
+
+four:
+  user: two
+  content: Post4
+  created_at: <%= 8.minutes.ago %>
+  
+five:
+  user: two
+  content: Post5
+  created_at: <%= 7.minutes.ago %>
+  
+six:
+  user: two
+  content: Post6
+  created_at: <%= 6.minutes.ago %>
