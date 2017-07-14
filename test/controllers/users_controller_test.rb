@@ -55,6 +55,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_no_difference "User.count" do
       delete user_path(@user)
     end
+    assert_redirected_to signin_path
   end
   
   test "should redirect destroy if the user is signed in but not an admin" do
@@ -62,6 +63,14 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_no_difference "User.count" do
       delete user_path(@user)
     end
+    assert_redirected_to users_path
   end
 
+  test "should redirect if an admin is deleting itself" do
+    sign_in_as @admin
+    assert_no_difference "User.count" do
+      delete user_path(@admin)
+    end
+    assert_redirected_to users_path
+  end
 end

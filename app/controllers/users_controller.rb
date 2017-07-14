@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :signed_in, only: [:edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin, only: :destroy
+  before_action :untouchable, only: :destroy
   
   def index
     @users = User.paginate(page: params[:page], per_page: 20)
@@ -60,7 +61,17 @@ class UsersController < ApplicationController
     end
     
     def admin
-      redirect_to root_path unless admin?
+      unless admin?
+        flash[:danger] = "You are not an admin."
+        redirect_to users_path 
+      end
+    end
+    
+    def untouchable
+      if User.find(params[:id]).admin
+        flash[:danger] = "You cannot delete an admin account."
+        redirect_to users_path
+      end
     end
     
     def signed_in
