@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   resources :users, except: [:new, :create]
   get "/signup" => "users#new"
   post "/signup" => "users#create"
-  resources :posts, only: :destroy
+  resources :posts, only: [:create, :destroy]
 end

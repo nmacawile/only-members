@@ -1,0 +1,5 @@
+<%= form_for @post, url: posts_path do |f| %>
+  <%= f.label :post %>
+  <%= f.text_area :content, class: "form_control", style: "height: 220px; max-height: 400px; width: 100%; resize: vertical" %>
+  <%= f.submit "Post", class: "btn btn-primary btn-block" %>
+<% end %>

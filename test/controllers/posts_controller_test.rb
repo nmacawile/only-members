@@ -34,5 +34,21 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     end
     assert_redirected_to @poster
   end
-
+  
+  test "should not allow posting if user is not signed in" do
+    assert_no_difference "Post.count" do
+      post posts_path, params: { post: { content: "Hello, world!",
+                                         user_id: @not_poster.id } }
+    end
+    assert_redirected_to signin_path
+  end
+  
+  test "should not allow posting on behalf of another user (still post as the signed in user)" do
+    sign_in_as(@poster)
+    assert_difference "Post.count", 1 do
+      post posts_path, params: { post: { content: "Hello, world!",
+                                         user_id: @not_poster.id } }
+    end
+    assert_equal Post.first.user.name, @poster.name
+  end
 end
