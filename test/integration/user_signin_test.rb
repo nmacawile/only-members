@@ -22,4 +22,15 @@ class UserSigninTest < ActionDispatch::IntegrationTest
     assert_not user_signed_in?
     assert_not flash.empty?
   end
+  
+  test "signin with remembering" do
+    sign_in_as(@user, remember_me: '1')
+    assert_equal cookies['remember_token'], assigns(:user).remember_token
+  end
+
+  test "signin without remembering" do
+    sign_in_as(@user, remember_me: '1')
+    sign_in_as(@user, remember_me: '0')
+    assert_empty cookies['remember_token']
+  end
 end
