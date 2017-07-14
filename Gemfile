@@ -7,6 +7,10 @@ gem 'rails', '5.0.2'
 gem 'bootstrap-sass', '3.3.7'
 # minitest
 gem 'minitest', '~> 5.10', '!= 5.10.2'
+# pagination and faker
+gem 'faker',                   '1.8.4'
+gem 'will_paginate',           '3.1.5'
+gem 'bootstrap-will_paginate', '1.0.0'
 # Use pg as the database for Active Record
 gem 'pg', '~> 0.20.0'
 # Use SCSS for stylesheets

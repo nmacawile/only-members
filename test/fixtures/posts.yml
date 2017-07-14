@@ -29,3 +29,10 @@ six:
   user: two
   content: Post6
   created_at: <%= 6.minutes.ago %>
+
+<% 20.times do |n| %>
+four_post_<%= n %>:
+  user: four
+  content: four<%= n %>
+  created_at: <%= 1.year.ago %>
+<% end %>

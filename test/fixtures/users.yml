@@ -13,3 +13,30 @@ two:
   name: Second User
   email: seconduser@fixtures.fix
   password_digest: <%= User.digest("password") %>
+  
+three:
+  name: Third
+  email: thirduser@fixtures.fix
+  password_digest: <%= User.digest("password") %>
+  
+four:
+  name: Four
+  email: fourthuser@fixtures.fix
+  password_digest: <%= User.digest("password") %>
+  
+five:
+  name: Five
+  email: fifthuser@fixtures.fix
+  password_digest: <%= User.digest("password") %>
+  
+six:
+  name: Six
+  email: sixthuser@fixtures.fix
+  password_digest: <%= User.digest("password") %>
+
+<% 100.times do |n| %>
+user<%= n %>:
+  name: USER <%= n %>TH
+  email: user<%= n %>@fixtures.fix
+  password_digest: <%= User.digest("password") %>
+<% end %>

@@ -11,20 +11,8 @@
     </ul>
   </aside>
   <div class="col-md-6">
-    <div class="post-block">
-      <strong><a>User Name</a></strong> <span class="timestamp">2 days ago</span>
-      <p>POST GOES HERE</p>
-      <a href="#">delete</a>
-    </div>
-    <div class="post-block">
-      <strong><a>User Name</a></strong> <span class="timestamp">2 days ago</span>
-      <p>POST GOES HERE</p>
-      <a href="#">delete</a>
-    </div>
-    <div class="post-block">
-      <strong><a>User Name</a></strong> <span class="timestamp">2 days ago</span>
-      <p>POST GOES HERE</p>
-      <a href="#">delete</a>
-    </div>
+    <%= will_paginate @posts %>
+    <%= render @posts %>
+    <%= will_paginate @posts %>
   </div>
 </div>
