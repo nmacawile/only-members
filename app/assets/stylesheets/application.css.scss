@@ -40,11 +40,16 @@
 .user-links {
   list-style: none;
   li {
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 15px;
+    padding: 5px 15px;
+    .delete-user {
+      float: right;
+      visibility: hidden;
+    }
     &:hover {
       background-color: $gray-lighter;
+      .delete-user {
+        visibility: visible;
+      }
     }
   }
 }

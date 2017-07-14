@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :signed_in_user, only: [:create, :destroy]
-  before_action :correct_user, only: :destroy
+  before_action :correct_user_or_admin, only: :destroy
   def index
     @post = Post.new
     @posts = Post.paginate(page: params[:page], per_page: 10)
@@ -21,9 +21,11 @@ class PostsController < ApplicationController
   end
   
   def destroy
-    Post.find(params[:id]).destroy
+    post = Post.find(params[:id])
+    user = post.user
+    post.destroy
     flash[:info] = "Post has been deleted."
-    redirect_to current_user
+    redirect_to user
   end
   
   private
@@ -35,9 +37,9 @@ class PostsController < ApplicationController
       redirect_to signin_path unless signed_in?
     end
     
-    def correct_user
+    def correct_user_or_admin
       user = Post.find(params[:id]).user
-      unless current_user?(user)
+      unless current_user?(user) || admin?
         flash[:warning] = "That post is not yours"
         redirect_to root_path
       end

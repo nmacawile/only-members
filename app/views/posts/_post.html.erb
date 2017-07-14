@@ -1,5 +1,5 @@
 <div class="post-block">
  <strong><%= link_to post.user.name, post.user %></strong><span class="timestamp"> • <%= time_ago_in_words(post.created_at) + " ago" %></span>
  <p><%= post.content %></p>
- <%= link_to "delete", post, method: :delete, data: { confirm: "Delete this post?" } if current_user?(post.user) %>
+ <%= link_to "delete", post, method: :delete, data: { confirm: "Delete this post?" } if current_user?(post.user) || admin? %>
 </div>

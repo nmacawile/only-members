@@ -2,6 +2,7 @@ require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
   def setup
+    @admin = users(:admin)
     @user = users(:one)
     @other_user = users(:two)
   end
@@ -48,6 +49,19 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
     get users_path
     assert_response :success
+  end
+  
+  test "should redirect destroy if the user is not signed in" do
+    assert_no_difference "User.count" do
+      delete user_path(@user)
+    end
+  end
+  
+  test "should redirect destroy if the user is signed in but not an admin" do
+    sign_in_as @other_user
+    assert_no_difference "User.count" do
+      delete user_path(@user)
+    end
   end
 
 end

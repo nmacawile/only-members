@@ -33,6 +33,12 @@ six:
   name: Six
   email: sixthuser@fixtures.fix
   password_digest: <%= User.digest("password") %>
+  
+admin:
+  name: Admin
+  email: admin@fixtures.fix
+  password_digest: <%= User.digest("password") %>
+  admin: true
 
 <% 100.times do |n| %>
 user<%= n %>:

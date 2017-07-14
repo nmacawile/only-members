@@ -27,14 +27,6 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
   end
   
-  test "should delete when a signed in user is deleting his own post" do
-    sign_in_as @poster
-    assert_difference "Post.count", -1 do
-      delete post_path(@post)
-    end
-    assert_redirected_to @poster
-  end
-  
   test "should not allow posting if user is not signed in" do
     assert_no_difference "Post.count" do
       post posts_path, params: { post: { content: "Hello, world!",
