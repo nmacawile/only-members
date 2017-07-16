@@ -46,9 +46,9 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
   end
 
-  test "should get index" do
+  test "should redirect index when not signed in" do
     get users_path
-    assert_response :success
+    assert_redirected_to signin_path
   end
   
   test "should redirect destroy if the user is not signed in" do

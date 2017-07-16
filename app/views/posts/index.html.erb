@@ -1,6 +1,6 @@
 <div class="row">
   <aside class="col-md-3">
-    <%= render "form" %>
+    <%= render "form" if signed_in? %>
   </aside>
   <div class="col-md-6">
     <%= will_paginate @posts %>

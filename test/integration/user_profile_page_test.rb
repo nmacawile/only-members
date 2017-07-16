@@ -2,6 +2,7 @@ require 'test_helper'
 
 class UserProfilePageTest < ActionDispatch::IntegrationTest
   test "posts should be paginated" do
+    sign_in_as users(:one)
     user = users(:four)
     get user_path(user)
     assert_template "users/show"
@@ -9,6 +10,16 @@ class UserProfilePageTest < ActionDispatch::IntegrationTest
     user.posts.paginate(page: 1, per_page: 5).each do |post|
       assert_select "a[href=?]", user_path(post.user), text: post.user.name
       assert_select "p", post.content
+    end
+  end
+  
+  test "posts should be hidden when viewer is not signed in" do
+    user = users(:four)
+    get user_path(user)
+    assert_template "users/show"
+    user.posts.paginate(page: 1, per_page: 5).each do |post|
+      assert_select "a[href=?]", user_path(post.user), text: post.user.name, count: 0
+      assert_select "p", post.content, count: 0
     end
   end
   

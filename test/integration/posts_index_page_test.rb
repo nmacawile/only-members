@@ -2,6 +2,7 @@ require 'test_helper'
 
 class PostsIndexPageTest < ActionDispatch::IntegrationTest
   test "should be paginated" do
+    sign_in_as users(:one)
     get root_path
     assert_template 'posts/index'
     assert_select "div.pagination"
@@ -22,5 +23,12 @@ class PostsIndexPageTest < ActionDispatch::IntegrationTest
         assert_select "a[href=?]", post_path(post), text: "delete", count: 0
       end
     end
+  end
+  
+  test "post should  be sanitized" do
+    sign_in_as users(:one)
+    post posts_path, params: { post: { content: "<script>do_nasty_stuff()</script>" } }
+    get root_path
+    assert_select "p", text: "do_nasty_stuff()"
   end
 end

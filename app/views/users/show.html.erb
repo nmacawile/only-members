@@ -1,7 +1,7 @@
 <div class="row">
   <aside class="col-md-3">
     <ul>
-      <h2><%= @user.name %></h2>
+      <h2><%= signed_in? ? @user.name : "Anonymous" %></h2>
       <% if signed_in? && current_user?(@user) %>
         <ul>
           <li><%= link_to("Settings", edit_user_path(current_user)) %></li>

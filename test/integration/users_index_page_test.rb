@@ -2,6 +2,7 @@ require 'test_helper'
 
 class UsersIndexPageTest < ActionDispatch::IntegrationTest
   test "should be paginated" do
+    sign_in_as users(:one)
     get users_path
     assert_template 'users/index'
     assert_select "div.pagination"
